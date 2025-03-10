@@ -1,0 +1,51 @@
+buildscript {
+    ext {
+    }
+	repositories {
+		mavenCentral()
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group = 'mpinard'
+version = '0.1.0-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+configurations {
+    compile.exclude module: "slf4j-log4j12"
+    compile.exclude module: "log4j"
+}
+
+repositories {
+	mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+
+    implementation("org.slf4j:slf4j-api:${slf4jVersion}")
+    implementation("org.slf4j:jul-to-slf4j:${slf4jVersion}")
+    implementation("ch.qos.logback:logback-classic:${logbackVersion}")
+    implementation("ch.qos.logback:logback-core:${logbackVersion}")
+    implementation("com.google.guava:guava:${guavaVersion}")
+
+    testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+    testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    testImplementation("org.junit.platform:junit-platform-engine:${junitPlatformVersion}")
+    testImplementation("org.junit.platform:junit-platform-commons:${junitPlatformVersion}")
+    testImplementation("org.junit.platform:junit-platform-runner:${junitPlatformVersion}")
+    testImplementation("org.junit.platform:junit-platform-suite:${junitPlatformVersion}")
+    testImplementation("org.assertj:assertj-core:${assertjVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+
+}
