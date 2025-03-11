@@ -11,8 +11,11 @@ apply plugin: 'idea'
 
 group = 'mpinard'
 version = '0.1.0-SNAPSHOT'
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_23
+    targetCompatibility = JavaVersion.VERSION_23
+}
 
 configurations {
     compile.exclude module: "slf4j-log4j12"
